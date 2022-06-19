@@ -48,6 +48,9 @@ emerge -vq sys-fs/e2fsprogs sys-fs/btrfs-progs
 emerge -vq app-portage/gentoolkit
 
 # bootloader
-emerge -vq sys-boot/grub sys-boot/os-prober
+emerge -vq sys-boot/grub
 grub-install --target=x86_64-efi --efi-directory=/boot
 grub-mkconfig -o /boot/grub/grub.cfg
+
+# cleanup
+rm -- "$0"
