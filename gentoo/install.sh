@@ -98,11 +98,8 @@ EOF
 
 mount -t proc /proc $MOUNT_DIR/proc
 mount -R /sys $MOUNT_DIR/sys
-mount --make-rslave $MOUNT_DIR/sys
 mount -R /dev $MOUNT_DIR/dev
-mount --make-rslave $MOUNT_DIR/dev
 mount -B /run $MOUNT_DIR/run
-mount --make-rslave $MOUNT_DIR/run
 
 # chroot and execute post-chroot script
 cp ./bootstrap.sh $MOUNT_DIR
