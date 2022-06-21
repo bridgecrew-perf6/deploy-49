@@ -1,3 +1,2 @@
-*.json
+!.todo.json
 __pycache__
-gentoo/files/stage3/*

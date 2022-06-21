@@ -32,9 +32,9 @@ fi
 #   3           100%    Linux filesystem
 sgdisk -Z $1
 sgdisk -o $1
-sgdisk -n 1::+512M -t 1:EF00 -c "EFI system partition" $1
-sgdisk -n 2::+4G   -t 2:8200 -c "Linux swap"           $1
-sgdisk -n 3::      -t 3:8300 -c "Linux filesystem"     $1
+sgdisk -n 1::+512M -t 1:EF00 $1
+sgdisk -n 2::+4G   -t 2:8200 $1
+sgdisk -n 3::      -t 3:8300 $1
 sgdisk -p $1
 
 # create filesystem (assumes nvme)
@@ -92,7 +92,7 @@ UUID=$part2_uuid   none       swap     sw                                      0
 UUID=$part3_uuid   /                     btrfs    defaults,ssd,relatime,compress=lzo,autodefrag,subvol=/@           0 0
 UUID=$part3_uuid   /home                 btrfs    defaults,ssd,relatime,compress=lzo,autodefrag,subvol=/@home       0 0
 UUID=$part3_uuid   /var/log              btrfs    defaults,ssd,relatime,compress=lzo,autodefrag,subvol=/@log        0 0
-UUID=$part3_uuid   /var/cache/distfiles  btrfs    defaults,ssd,relatime,compress=lzo,autodefrag,subvol=/@distfiles  0 0
+UUID=$part3_uuid   /var/cache/distfiles  btrfs    defaults,ssd,relatime,autodefrag,subvol=/@distfiles  		    0 0
 
 EOF
 
