@@ -2,7 +2,7 @@
 
 #usage ./bootstrap.sh "root passwd"
 
-source /etc/profile
+. /etc/profile
 
 # packages
 emerge-webrsync
@@ -19,7 +19,7 @@ echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 locale-gen
 eselect locale set en_US.utf8
 
-env-update && source /etc/profile
+env-update && . /etc/profile
 
 # kernel
 emerge -vq sys-kernel/linux-firmware sys-kernel/gentoo-sources sys-kernel/genkernel
@@ -32,8 +32,8 @@ emerge -vnq net-misc/dhcpcd net-misc/netifrc
 echo "hostname=\"aisaka-gentoo\"" > /etc/conf.d/hostname
 echo "config_${netif}=\"dhcp\"" > /etc/conf.d/net
 
-ln -s /etc/init.d/net.lo /etc/init.d/net.$netif
-rc-update add net.$netif default
+ln -s /etc/init.d/net.lo /etc/init.d/net."$netif"
+rc-update add net."$netif" default
 
 # change root password
 eval "echo root:$1 | chpasswd"
